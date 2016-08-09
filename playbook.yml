@@ -1,0 +1,38 @@
+---
+- hosts: myservers
+  vars:
+    ntp_servers:
+    - 0.centos.pool.ntp.org
+    - 1.centos.pool.ntp.org
+    - 2.centos.pool.ntp.org
+    - 3.centos.pool.ntp.org
+  become: yes
+
+  tasks:
+  - name: ensure ntp is installed
+    yum:
+      name: ntp
+      state: present
+
+  - name: configure ntp
+    template:
+      src: ntp.conf.j2
+      dest: /etc/ntp.conf
+      owner: root
+      group: root
+      mode: 0644
+    notify:
+      - restart ntpd
+
+  - name: ensure ntpd is running and enabled
+    service:
+      name: ntpd
+      enabled: yes
+      state: started
+
+  handlers:
+    - name: restart ntpd
+      service:
+        name: ntpd
+        state: restarted
+

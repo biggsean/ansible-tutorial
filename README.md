@@ -6,6 +6,11 @@ This is a ansible tutorial.
 TAG: ADHOC
 At this point there is a simple Vagrant file and a hosts file.  The Vagrant box is Centos 7.2.
 
+TAG: PLAYBOOKS
+
+We add a group to the inventory file (hosts) and write a simple playbook.
+We also add a template file and an ansible.cfg.
+
 Try running
 ```bash
 vagrant up
