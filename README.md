@@ -21,7 +21,7 @@ See http://docs.ansible.com/ansible/intro_getting_started.html
 Requirements
 ------------
 This tutorial was written using:
-ansible 2.0.1.0
-vagrant 1.8.1
-VirtualBox 5.0.16
+* ansible 2.0.1.0
+* vagrant 1.8.1
+* VirtualBox 5.0.16
 
