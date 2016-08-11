@@ -43,6 +43,18 @@ vagrant up
 vagrant provision
 ```
 
+### TAG: GALAXY-EXAMPLE
+
+We removed the ntp role and put it in a public repo to share!
+
+Try running:
+```bash
+mkdir galaxy-roles
+ansible-galaxy install -r install_roles.yml
+vagrant up
+# or vagrant provision if the vm is still up
+```
+
 Requirements
 ------------
 This tutorial was written using:
