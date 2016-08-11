@@ -1,0 +1,6 @@
+---
+- src: "https://github.com/biggsean/ansible-role-ntp.git"
+  version: v1.0
+  name: ntp
+
+
