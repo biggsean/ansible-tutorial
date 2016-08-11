@@ -14,6 +14,10 @@ Vagrant.configure(2) do |config|
   # boxes at https://atlas.hashicorp.com/search.
   config.vm.box = "centos/7"
 
+  config.vm.hostname = "ansible-tutorial"
+  config.vm.define config.vm.hostname do |t|
+  end
+
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.
@@ -69,4 +73,11 @@ Vagrant.configure(2) do |config|
   #   sudo apt-get update
   #   sudo apt-get install -y apache2
   # SHELL
+  config.vm.provision "ansible" do |ansible|
+    ansible.host_key_checking = false
+    ansible.playbook = "site.yml"
+    ansible.groups = {
+      "myservers" => [config.vm.hostname]
+    }
+  end
 end

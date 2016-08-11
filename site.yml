@@ -1,0 +1,7 @@
+---
+# site.yml
+- hosts: all
+  gather_facts: true
+
+- include: playbook.yml
+

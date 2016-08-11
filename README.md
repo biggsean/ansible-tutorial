@@ -3,10 +3,13 @@ Description
 
 This is a ansible tutorial.
 
-TAG: ADHOC
+### TAG: ADHOC
 At this point there is a simple Vagrant file and a hosts file.  The Vagrant box is Centos 7.2.
 
-TAG: PLAYBOOK-EXAMPLE
+Note:  You probabaly want to disable host key checking with ssh.
+See http://docs.ansible.com/ansible/intro_getting_started.html
+
+### TAG: PLAYBOOK-EXAMPLE
 
 We add a group to the inventory file (hosts) and write a simple playbook.
 We also add a template file and an ansible.cfg.
@@ -20,8 +23,25 @@ ansible all -i hosts -u vagrant -m ping
 ansible all -i hosts -u vagrant -m yum -a "name=vim-enhanced state=present" --sudo
 ansible all -i hosts -u vagrant -a "yum info vim-enhanced" --sudo
 ```
-Note:  You probabaly want to disable host key checking with ssh.
-See http://docs.ansible.com/ansible/intro_getting_started.html
+
+### TAG: ROLES-EXAMPLE
+
+Here we show some best practices and move tasks to a role.
+
+- We added the ansible provisioner to the Vagrantfile and removed the original inventory file (hosts)
+  - Vagrant will now create a inventory file and call ansible-playbook automatically
+  - `vagrant up` will bring the machine up and run the provisioner once
+  - `vagrant provision` will run ansible if the vm is already loaded
+- We added roles and moved the ntp tasks and variables in to the appropriate files
+- We added tags to the ntp role tasks
+- We added an include statement in site.yml
+
+Try running
+```bash
+vagrant up
+# After the provisioner runs, you can run it again
+vagrant provision
+```
 
 Requirements
 ------------
